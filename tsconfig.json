@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "outFile": "main.js",
+        "sourceMap": true,
+        "module": "None",
+        "typeRoots": [
+            "./Scripts/typings/PlayFab"
+        ]
+    },
+    "exclude": [
+        "node_modules"
+    ]
+}
