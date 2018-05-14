@@ -108,12 +108,13 @@ handlers.RoomPropertyUpdated = function (args) {
         },
         Permission: "Public"
     });
-    var request;
-    request.PlayFabId = args.Properties["winnerId"];
-    request.Data = {
-        "won": args.Properties["winnerWon"]
+    var request = {
+        PlayFabId: args.Properties["winnerId"],
+        Data: {
+            won: args.Properties["winnerWon"]
+        },
+        Permission: "Public"
     };
-    request.Permission = "Public";
     server.UpdateUserReadOnlyData(request);
     server.WriteTitleEvent({
         EventName: "updated_player_scores",
