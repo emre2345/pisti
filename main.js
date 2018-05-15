@@ -29,7 +29,7 @@
 //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 Object.defineProperty(exports, "__esModule", { value: true });
-var UserController_1 = require("./UserController");
+// var UserController_1 = require("./UserController");
 var userController = new UserController_1.UserController();
 var onNewAccountCreated = function (args, context) {
     var request = {
