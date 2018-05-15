@@ -31,7 +31,7 @@
 
 import {UserController} from "./UserController";
 
-let userController: UserController = new UserController();
+let controller: UserController = new UserController();
 
 var onNewAccountCreated = function (args: any, context: IPlayFabContext): void {
     let request: PlayFabServerModels.UpdateUserDataRequest = {
@@ -89,7 +89,7 @@ handlers.RoomJoined = function (args) {
     };
     server.WritePlayerEvent(eventRequest);
 
-    userController.incrementTotalMatch(args.UserId);
+    controller.incrementTotalMatch(args.UserId);
 };
 
 // Triggered automatically when a player leaves a Photon room
