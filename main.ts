@@ -69,6 +69,8 @@ handlers.RoomCreated = function (args) {
             OpeningPlayer: args.UserId
         }
     });
+
+    userController.incrementTotalMatch(args.UserId);
 };
 
 // Triggered automatically when a player joins a Photon room
@@ -108,14 +110,6 @@ handlers.RoomClosed = function (args) {
 // Note: currentPlayerId is undefined in this function
 handlers.RoomPropertyUpdated = function (args) {
     log.debug("Room Property Updated - Game: " + args.GameId);
-    server.WriteTitleEvent({
-        EventName: "received_room_property_update",
-        Body: {
-            GameId: args.GameId,
-            Player1Id: args.Properties["player1Id"],
-            Player2Id: args.Properties["player2Id"]
-        }
-    });
 
     var player1Id = args.Properties["player1Id"];
     var player2Id = args.Properties["player2Id"];
@@ -136,20 +130,14 @@ handlers.RoomPropertyUpdated = function (args) {
         Permission: "Public"
     });
 
-
-    let request: PlayFabServerModels.UpdateUserDataRequest = {
-        PlayFabId: args.Properties["winnerId"],
-        Data: {
-            won: args.Properties["winnerWon"]
-        },
-        Permission: "Public"
-    };
-    server.UpdateUserReadOnlyData(request);
+    userController.incrementWon(args.Properties["winnerId"]);
 
     server.WriteTitleEvent({
-        EventName: "updated_player_scores",
+        EventName: "room_property_update",
         Body: {
-            GameId: args.GameId
+            GameId: args.GameId,
+            Player1Id: args.Properties["player1Id"],
+            Player2Id: args.Properties["player2Id"]
         }
     });
 };

@@ -1,4 +1,3 @@
-// Object.defineProperty(exports, "__esModule", { value: true });
 var UserController = /** @class */ (function () {
     function UserController() {
     }
@@ -20,6 +19,21 @@ var UserController = /** @class */ (function () {
         };
         server.UpdateUserReadOnlyData(setDataRequest);
     };
+    UserController.prototype.incrementWon = function (playfabId) {
+        var getDataRequest = {
+            PlayFabId: playfabId,
+            Keys: ["won"]
+        };
+        var dataRequestResult = server.GetUserReadOnlyData(getDataRequest);
+        var won = Number(dataRequestResult["won"].Value) + 1;
+        var setDataRequest = {
+            PlayFabId: playfabId,
+            Data: {
+                won: won.toString()
+            },
+            Permission: "Public"
+        };
+        server.UpdateUserReadOnlyData(setDataRequest);
+    };
     return UserController;
 }());
-// exports.UserController = UserController;

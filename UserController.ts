@@ -1,5 +1,5 @@
 export class UserController {
-    constructor(){}
+    constructor() { }
 
     public incrementTotalMatch(playfabId: string) {
         //GetTotalMatch to increase
@@ -15,6 +15,24 @@ export class UserController {
             PlayFabId: playfabId,
             Data: {
                 totalMatch: totalMatchCount.toString()
+            },
+            Permission: "Public"
+        }
+        server.UpdateUserReadOnlyData(setDataRequest);
+    }
+
+    public incrementWon(playfabId: string) {
+        let getDataRequest: PlayFabServerModels.GetUserDataRequest = {
+            PlayFabId: playfabId,
+            Keys: ["won"]
+        }
+        let dataRequestResult: PlayFabServerModels.GetUserDataResult = server.GetUserReadOnlyData(getDataRequest);
+        let won: number = Number(dataRequestResult["won"].Value) + 1;
+
+        let setDataRequest: PlayFabServerModels.UpdateUserDataRequest = {
+            PlayFabId: playfabId,
+            Data: {
+                won: won.toString()
             },
             Permission: "Public"
         }
