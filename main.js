@@ -28,8 +28,8 @@
 // The following examples demonstrate all three options.
 //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
-Object.defineProperty(exports, "__esModule", { value: true });
-var UserController_1 = require("./UserController");
+// Object.defineProperty(exports, "__esModule", { value: true });
+// var UserController_1 = require("./UserController");
 var userController = new UserController();
 var onNewAccountCreated = function (args, context) {
     var request = {

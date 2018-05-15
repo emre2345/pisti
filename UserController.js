@@ -22,4 +22,4 @@ var UserController = /** @class */ (function () {
     };
     return UserController;
 }());
-// exports.UserController = UserController;
+exports.UserController = UserController;
