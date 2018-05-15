@@ -2,7 +2,7 @@
     "compilerOptions": {
         "target": "es5",
         // "outFile": "main.js",
-        "sourceMap": true,
+        // "sourceMap": true,
         "rootDir": "./",
         "module": "commonjs",
         "typeRoots": [
