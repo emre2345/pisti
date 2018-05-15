@@ -21,19 +21,6 @@ var UserController = /** @class */ (function () {
         };
         server.UpdateUserReadOnlyData(setDataRequest);
     };
-    UserController.prototype.updateUserData = function (name, value) {
-        var request = {
-            PlayFabId: currentPlayerId,
-            Data: {
-                won: "0",
-                pisti: "0",
-                totalMatch: "0"
-            },
-            Permission: "Public"
-        };
-        server.UpdateUserReadOnlyData(request);
-    };
     return UserController;
 }());
 exports.UserController = UserController;
-//# sourceMappingURL=UserController.js.map

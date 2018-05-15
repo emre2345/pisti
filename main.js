@@ -141,4 +141,3 @@ handlers.RoomEventRaised = function (args) {
     var eventData = args.Data;
     log.debug("Event Raised - Game: " + args.GameId + " Event Type: " + eventData.eventType);
 };
-//# sourceMappingURL=main.js.map

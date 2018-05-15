@@ -1,5 +1,6 @@
 export class UserController {
     constructor(){}
+
     public incrementTotalMatch(playfabId: string) {
         //GetTotalMatch to increase
         let getDataRequest: PlayFabServerModels.GetUserDataRequest = {
@@ -18,19 +19,5 @@ export class UserController {
             Permission: "Public"
         }
         server.UpdateUserReadOnlyData(setDataRequest);
-    }
-
-    updateUserData(name: string, value: any): void {
-        let request: PlayFabServerModels.UpdateUserDataRequest = {
-            PlayFabId: currentPlayerId,
-            Data: {
-                won: "0",
-                pisti: "0",
-                totalMatch: "0"
-            },
-            Permission: "Public"
-        };
-        server.UpdateUserReadOnlyData(request);
-
     }
 }

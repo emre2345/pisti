@@ -71,13 +71,6 @@ handlers.RoomCreated = function (args) {
     });
 };
 
-interface PlayerReadOnlyData
-{
-    won: number;
-    pisti: number;
-    totalMatch: number;
-}
-
 // Triggered automatically when a player joins a Photon room
 handlers.RoomJoined = function (args) {
     log.debug("Room Joined - Game: " + args.GameId + " PlayFabId: " + args.UserId);
