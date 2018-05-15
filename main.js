@@ -73,6 +73,7 @@ handlers.RoomJoined = function (args) {
         EventName: "player_joined_game"
     };
     server.WritePlayerEvent(eventRequest);
+    userController.incrementTotalMatch(args.UserId);
 };
 // Triggered automatically when a player leaves a Photon room
 handlers.RoomLeft = function (args) {

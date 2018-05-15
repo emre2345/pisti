@@ -2,9 +2,8 @@
     "compilerOptions": {
         "target": "es5",
         // "outFile": "main.js",
-        "outDir": "dist",
         "sourceMap": true,
-        "rootDir": "src",
+        "rootDir": "./",
         "module": "commonjs",
         "typeRoots": [
             "./Scripts"
