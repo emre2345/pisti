@@ -1,13 +1,18 @@
 {
     "compilerOptions": {
         "target": "es5",
-        "outFile": "main.js",
+        // "outFile": "main.js",
+        "outDir": "dist",
         "sourceMap": true,
-        "module": "None",
+        "rootDir": "src",
+        "module": "commonjs",
         "typeRoots": [
-            "./Scripts/typings/PlayFab"
+            "./Scripts"
         ]
     },
+    "include": [
+        "**/*.ts"
+    ],
     "exclude": [
         "node_modules"
     ]

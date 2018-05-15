@@ -29,6 +29,10 @@
 //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
+import {UserController} from "./UserController";
+
+let userController: UserController = new UserController();
+
 var onNewAccountCreated = function (args: any, context: IPlayFabContext): void {
     let request: PlayFabServerModels.UpdateUserDataRequest = {
         PlayFabId: currentPlayerId,
@@ -67,9 +71,25 @@ handlers.RoomCreated = function (args) {
     });
 };
 
+interface PlayerReadOnlyData
+{
+    won: number;
+    pisti: number;
+    totalMatch: number;
+}
+
 // Triggered automatically when a player joins a Photon room
 handlers.RoomJoined = function (args) {
     log.debug("Room Joined - Game: " + args.GameId + " PlayFabId: " + args.UserId);
+
+    //Raise event
+    let eventRequest: PlayFabServerModels.WriteServerPlayerEventRequest = {
+        PlayFabId: args.UserId,
+        EventName: "player_joined_game"
+    };
+    server.WritePlayerEvent(eventRequest);
+
+    userController.incrementTotalMatch(args.UserId);
 };
 
 // Triggered automatically when a player leaves a Photon room

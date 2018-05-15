@@ -1,3 +1,4 @@
+"use strict";
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 // Welcome to your first Cloud Script revision!
@@ -28,6 +29,9 @@
 // The following examples demonstrate all three options.
 //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
+Object.defineProperty(exports, "__esModule", { value: true });
+var UserController_1 = require("./UserController");
+var userController = new UserController_1.UserController();
 var onNewAccountCreated = function (args, context) {
     var request = {
         PlayFabId: currentPlayerId,
@@ -63,6 +67,12 @@ handlers.RoomCreated = function (args) {
 // Triggered automatically when a player joins a Photon room
 handlers.RoomJoined = function (args) {
     log.debug("Room Joined - Game: " + args.GameId + " PlayFabId: " + args.UserId);
+    //Raise event
+    var eventRequest = {
+        PlayFabId: args.UserId,
+        EventName: "player_joined_game"
+    };
+    server.WritePlayerEvent(eventRequest);
 };
 // Triggered automatically when a player leaves a Photon room
 handlers.RoomLeft = function (args) {
