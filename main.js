@@ -68,7 +68,10 @@ handlers.RoomJoined = function (args) {
     //Raise event
     var eventRequest = {
         PlayFabId: args.UserId,
-        EventName: "player_joined_game"
+        EventName: "player_joined_game",
+        Body: {
+            GameId: args.GameId
+        }
     };
     server.WritePlayerEvent(eventRequest);
     userController.incrementTotalMatch(args.UserId);
@@ -81,13 +84,6 @@ handlers.RoomLeft = function (args) {
 // Note: currentPlayerId is undefined in this function
 handlers.RoomClosed = function (args) {
     log.debug("Room Closed - Game: " + args.GameId);
-    server.WriteTitleEvent({
-        EventName: "room_closed",
-        Body: {
-            GameId: args.GameId,
-            ClosingPlayer: args.UserId
-        }
-    });
 };
 // Triggered automatically when a Photon room game property is updated.
 // Note: currentPlayerId is undefined in this function

@@ -25,7 +25,7 @@ var UserController = /** @class */ (function () {
             Keys: ["won"]
         };
         var dataRequestResult = server.GetUserReadOnlyData(getDataRequest);
-        var won = Number(dataRequestResult["won"].Value) + 1;
+        var won = Number(dataRequestResult.Data["won"].Value) + 1;
         var setDataRequest = {
             PlayFabId: playfabId,
             Data: {

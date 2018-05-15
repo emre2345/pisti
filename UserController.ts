@@ -27,7 +27,7 @@ export class UserController {
             Keys: ["won"]
         }
         let dataRequestResult: PlayFabServerModels.GetUserDataResult = server.GetUserReadOnlyData(getDataRequest);
-        let won: number = Number(dataRequestResult["won"].Value) + 1;
+        let won: number = Number(dataRequestResult.Data["won"].Value) + 1;
 
         let setDataRequest: PlayFabServerModels.UpdateUserDataRequest = {
             PlayFabId: playfabId,
