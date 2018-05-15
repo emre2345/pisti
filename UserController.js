@@ -1,4 +1,3 @@
-"use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var UserController = /** @class */ (function () {
     function UserController() {
