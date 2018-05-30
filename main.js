@@ -98,14 +98,18 @@ handlers.RoomPropertyUpdated = function (args) {
         },
         Permission: "Public"
     });
-    server.UpdateUserReadOnlyData({
-        PlayFabId: player2Id,
-        Data: {
-            pisti: args.Properties[player2Id + "pisti"]
-        },
-        Permission: "Public"
-    });
-    userController.incrementWon(args.Properties["winnerId"]);
+    if (player2Id != "-1") {
+        server.UpdateUserReadOnlyData({
+            PlayFabId: player2Id,
+            Data: {
+                pisti: args.Properties[player2Id + "pisti"]
+            },
+            Permission: "Public"
+        });
+    }
+    var winnerId = args.Properties["winnerId"];
+    if (winnerId != "-1")
+        userController.incrementWon(winnerId);
     server.WriteTitleEvent({
         EventName: "room_property_update",
         Body: {

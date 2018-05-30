@@ -29,7 +29,7 @@
 //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
-import {UserController} from "./UserController";
+import { UserController } from "./UserController";
 
 let userController: UserController = new UserController();
 
@@ -117,15 +117,19 @@ handlers.RoomPropertyUpdated = function (args) {
         Permission: "Public"
     });
 
-    server.UpdateUserReadOnlyData({
-        PlayFabId: player2Id,
-        Data: {
-            pisti: args.Properties[player2Id + "pisti"]
-        },
-        Permission: "Public"
-    });
+    if (player2Id != "-1") {
+        server.UpdateUserReadOnlyData({
+            PlayFabId: player2Id,
+            Data: {
+                pisti: args.Properties[player2Id + "pisti"]
+            },
+            Permission: "Public"
+        });
+    }
 
-    userController.incrementWon(args.Properties["winnerId"]);
+    var winnerId = args.Properties["winnerId"];
+    if(winnerId != "-1")
+        userController.incrementWon(winnerId);
 
     server.WriteTitleEvent({
         EventName: "room_property_update",
